@@ -2169,6 +2169,21 @@ input, select, textarea {
 	/* Align banner columns' content to the bottom of the banner image */
 		#banner .row {
 			align-items: flex-end;
+			height: 100%;
+		}
+
+		#banner .col-7,
+		#banner .col-5 {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+
+		#banner .col-7 img,
+		#banner .col-5 img {
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
 		}
 
 	/* Banner paragraph tweaks: smaller, stylish font and yellow background */
