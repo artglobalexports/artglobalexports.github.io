@@ -369,6 +369,61 @@ input, select, textarea {
 			width: 100%;
 		}
 
+/* Sidebar full-height responsive image for left-sidebar pages */
+body.left-sidebar #sidebar {
+	display: flex;
+	flex-direction: column;
+}
+
+body.left-sidebar #sidebar .image-full {
+	flex: 1 1 auto;
+	display: flex;
+	align-items: stretch;
+}
+
+body.left-sidebar #sidebar .image-full .image.fit {
+	width: 100%;
+	height: 100%;
+}
+
+body.left-sidebar #sidebar .image-full .image.fit img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Ensure left sidebar column stretches to match right content height */
+body.left-sidebar .row.gtr-200 > .col-4,
+body.left-sidebar .row.gtr-200 > .col-8 {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Make sidebar fill column and let the image section expand */
+body.left-sidebar .row.gtr-200 > .col-4 #sidebar {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+body.left-sidebar .row.gtr-200 > .col-4 #sidebar .image-full {
+	flex: 1 1 auto;
+	display: flex;
+}
+
+/* Small screens: revert to normal stacking */
+@media screen and (max-width: 736px) {
+	body.left-sidebar .row.gtr-200 > .col-4,
+	body.left-sidebar .row.gtr-200 > .col-8 {
+		display: block;
+	}
+	body.left-sidebar .row.gtr-200 > .col-4 #sidebar .image-full .image.fit img {
+		height: auto;
+		object-fit: contain;
+	}
+}
+
 		.row > .off-12 {
 			margin-left: 100%;
 		}
