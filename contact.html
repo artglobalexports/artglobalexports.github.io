@@ -72,19 +72,31 @@
                                         <div class="col-6 col-12-medium">
                                             <section>
                                                 <h3>Send us a message</h3>
-                                                <form id="contact-form" method="post" action="mailto:info@artglobalexports.com" enctype="text/plain">
+                                                <!--
+                                                    To forward submissions to Google Forms:
+                                                    1. Create a Google Form and open it in the browser.
+                                                    2. Click the three-dot menu > Get pre-filled link or inspect the form to find entry IDs (they look like entry.123456789).
+                                                    3. Copy the form's POST endpoint (replace `/viewform` with `/formResponse`) and paste it into the form's
+                                                       data-google-form-url attribute below.
+                                                    4. Replace the data-entry values on the inputs with the real entry IDs from your Google Form.
+                                                    Example data-google-form-url: https://docs.google.com/forms/d/e/FORM_ID/formResponse
+                                                -->
+                                                <form id="contact-form" method="post" action="mailto:info@artglobalexports.com" enctype="text/plain" data-google-form-url="https://docs.google.com/forms/d/e/1FAIpQLSe4oe4JYSgFE40uSNnB8-XobZUXHc_nt424xriBNAZGpbc4KA/formResponse">
                                                     <div class="row">
                                                         <div class="col-6 col-12-small">
                                                             <label for="name">Name</label>
-                                                            <input type="text" name="name" id="name" placeholder="Your name" />
+                                                            <!-- Replace data-entry value with your Google Form 'entry.*' id for the Name field -->
+                                                            <input type="text" name="name" id="name" placeholder="Your name" data-entry="entry.1566283008" />
                                                         </div>
                                                         <div class="col-6 col-12-small">
                                                             <label for="email">Email</label>
-                                                            <input type="email" name="email" id="email" placeholder="you@example.com" />
+                                                            <!-- Replace data-entry value with your Google Form 'entry.*' id for the Email field -->
+                                                            <input type="email" name="email" id="email" placeholder="you@example.com" data-entry="entry.1006297887" />
                                                         </div>
                                                         <div class="col-12">
                                                             <label for="message">Message</label>
-                                                            <textarea name="message" id="message" placeholder="Write your message" rows="6"></textarea>
+                                                            <!-- Replace data-entry value with your Google Form 'entry.*' id for the Message field -->
+                                                            <textarea name="message" id="message" placeholder="Write your message" rows="6" data-entry="entry.1016657341"></textarea>
                                                         </div>
                                                         <div class="col-12">
                                                             <ul class="actions">
@@ -169,6 +181,45 @@
             <script src="assets/js/breakpoints.min.js"></script>
             <script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
+
+                <!-- Google Forms submit helper: fills Google Form field names from data-entry attributes.
+                     - Set the form's `data-google-form-url` attribute to your Google Form endpoint (formResponse).
+                     - Replace each input/textarea `data-entry` value with the corresponding Google Form entry id.
+                     - If `data-google-form-url` is empty this script is inert and the form falls back to the mailto action.
+                -->
+                <script>
+                (function($){
+                    var $form = $('#contact-form');
+                    if(!$form.length) return;
+                    var googleFormUrl = $form.data('google-form-url');
+                    if(!googleFormUrl) return; // no configured Google Form URL -> keep default behavior
+
+                    $form.on('submit', function(e){
+                        e.preventDefault();
+
+                        var data = {};
+                        $form.find('[data-entry]').each(function(){
+                            var entry = $(this).data('entry');
+                            if(!entry) return;
+                            data[entry] = $(this).val() || '';
+                        });
+
+                        // Build FormData
+                        var fd = new FormData();
+                        Object.keys(data).forEach(function(k){ fd.append(k, data[k]); });
+
+                        // Use fetch with no-cors because Google Forms does not set CORS headers for direct POSTs.
+                        fetch(googleFormUrl, { method: 'POST', mode: 'no-cors', body: fd })
+                            .then(function(){
+                                // no-cors responses are opaque; assume success
+                                alert('Message sent — thank you!');
+                                $form[0].reset();
+                            }).catch(function(){
+                                alert('Submission failed; please try via email.');
+                            });
+                    });
+                })(jQuery);
+                </script>
 
     </body>
 </html>
