@@ -1980,6 +1980,24 @@ body.left-sidebar .row.gtr-200 > .col-4 #sidebar .image-full {
 		padding: 6em 0 8em 0;
 	}
 
+/* Align the Contact widget to the right edge of the footer row */
+@media screen and (min-width: 981px) {
+	#footer .row > .col-3:last-child {
+		margin-left: auto;
+	}
+
+	#footer .widget.contact,
+	#footer .widget.contact.last {
+		text-align: right;
+	}
+
+	#footer .widget.contact ul {
+		display: flex;
+		justify-content: flex-end;
+		gap: 0.5em;
+	}
+}
+
 /* Header */
 
 	#header {
@@ -2047,6 +2065,13 @@ body.left-sidebar .row.gtr-200 > .col-4 #sidebar .image-full {
 		background: #696969;
 		color: #fff;
 		padding: 0.2em 0.4em;
+	}
+
+	/* Ensure anchor inside the h1 is centered on narrow screens */
+	#logo h1 a {
+		display: block;
+		width: 100%;
+		text-align: center;
 	}
 
 	#logo span {
