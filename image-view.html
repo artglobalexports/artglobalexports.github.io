@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Image View</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      body{background:#111;color:#fff;margin:0;}
+      .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+      .wrap img{max-width:100%;max-height:100vh;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+      .back{position:fixed;top:18px;left:18px;background:rgba(0,0,0,.45);color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none}
+    </style>
+  </head>
+  <body>
+    <a class="back" href="media.html">← Back</a>
+    <div class="wrap">
+      <img id="viewer-img" src="" alt="" />
+    </div>
+    <script>
+      function qs(name){
+        name = name.replace(/[\[\]]/g,'\\$&');
+        var r = new RegExp('[?&]'+name+'(=([^&#]*)|&|#|$)');
+        var m = r.exec(window.location.href);
+        return m && m[2] ? decodeURIComponent(m[2].replace(/\+/g,' ')) : null;
+      }
+      var img = qs('img') || qs('src');
+      if(img){ document.getElementById('viewer-img').src = img; }
+    </script>
+  </body>
+</html>

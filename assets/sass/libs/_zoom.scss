@@ -1,0 +1,55 @@
+/* Zoom-from-thumb styles */
+#zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  z-index: 12000;
+}
+
+.zoom-img {
+  position: absolute;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  will-change: top, left, width, height;
+}
+
+.zoom-close {
+  position: absolute;
+  display: none;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1;
+  background: rgba(0,0,0,0.45);
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 12001;
+}
+
+.zoom-prev,
+.zoom-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 2rem;
+  background: rgba(0,0,0,0.35);
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 12002;
+}
+
+.zoom-prev { left: 24px; }
+.zoom-next { right: 24px; }
+
+html.zoom-open { overflow: hidden; }
+
+@media screen and (max-width: 736px) {
+  .zoom-img { border-radius: 4px; }
+  .zoom-prev, .zoom-next { display: none; }
+}
