@@ -2100,7 +2100,7 @@ body.left-sidebar .row.gtr-200 > .col-4 #sidebar .image-full {
 		line-height: 1.1em;
 		display: block;
 		text-align: center;
-		background: #696969;
+		background: #2c6804;
 		color: #fff;
 		padding: 0.2em 0.4em;
 	}
@@ -2860,6 +2860,7 @@ body.left-sidebar .row.gtr-200 > .col-4 #sidebar .image-full {
 				text-align: center;
 				padding: 15px 15px 15px 15px;
 				margin: 0 auto !important;
+				background-image: url("images/Banner2.jpg");
 			}
 
 				#banner h2 {
