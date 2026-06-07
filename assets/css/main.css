@@ -2238,7 +2238,7 @@ body.left-sidebar .row.gtr-200 > .col-4 #sidebar .image-full {
 		position: relative;
 		height: 400px;
 		padding: 0;
-		background-image: linear-gradient(rgba(30,0,0,0.35), rgba(30,0,0,0.35)), url("images/banner.jpg");
+		background-image: url("images/banner.jpg");
 		background-position: left center;
 		background-size: cover;
 		background-repeat: no-repeat;
