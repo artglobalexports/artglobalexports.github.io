@@ -11,6 +11,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="icon" type="image/jpeg" href="images/ArtLogoSmall2.jpg" />
         <link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="assets/css/chatbot.css" />
     </head>
     <!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-T6X0TL9YB3"></script>
@@ -147,6 +149,26 @@
                 </div>
 
             </div>
+			
+			<!-- Chatbot Widget -->
+		<div id="chatbot-widget">
+			<button id="chatbot-toggle" title="Chat with us"><i class="bi bi-chat-dots-fill"></i></button>
+			<span id="chatbot-label">AI Chat</span>
+
+			<div id="chatbot-window" class="chatbot-hidden">
+				<div class="chatbot-header">
+					<h3>Akshamrit AI Assistant</h3>
+					<button id="chatbot-close" title="Close">&times;</button>
+				</div>
+
+				<div id="chatbot-messages"></div>
+
+				<div class="chatbot-input-area">
+					<input type="text" id="chatbot-input" placeholder="Type your message..." autocomplete="off" maxlength="2000" />
+					<button id="chatbot-send" title="Send"><i class="bi bi-send-fill"></i></button>
+				</div>
+			</div>
+		</div>
 
         <!-- Scripts -->
 
@@ -156,6 +178,11 @@
             <script src="assets/js/breakpoints.min.js"></script>
             <script src="assets/js/util.js"></script>
             <script src="assets/js/main.js"></script>
+			<!-- Chatbot Configuration (must load first) -->
+			<script src="assets/js/chatbot-config.js"></script>
+
+			<!-- Chatbot Main Script -->
+			<script src="assets/js/chatbot.js"></script>
 
     </body>
 </html>
